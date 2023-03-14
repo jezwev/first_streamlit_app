@@ -69,4 +69,4 @@ def insert_row(new_fruit):
         return "Thanks for adding " + new_fruit
 
 add_my_fruit = streamlit.text_input('What fruit would you like to add?','')
-streamlit.write('The user entered ', insert_row(add_my_fruit))
+streamlit.text('The user entered '+ insert_row(add_my_fruit))
