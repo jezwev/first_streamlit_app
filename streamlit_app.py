@@ -26,7 +26,7 @@ streamlit.dataframe(fruits_to_show)
 streamlit.header("Fruityvice Fruit Advice!")
 
 #createa function
-def get_fruityvice_data(fruit_choice)
+def get_fruityvice_data(fruit_choice):
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
     # Normalize semi-structured JSON data into a flat table.
     return pandas.json_normalize(fruityvice_response.json())
