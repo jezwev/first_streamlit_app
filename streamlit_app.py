@@ -25,6 +25,13 @@ streamlit.dataframe(fruits_to_show)
 
 streamlit.header("Fruityvice Fruit Advice!")
 
+#createa function
+def get_fruityvice_data(fruit_choice)
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    # Normalize semi-structured JSON data into a flat table.
+    return pandas.json_normalize(fruityvice_response.json())
+
+
 
 #user input for fruit
 
@@ -33,13 +40,11 @@ try:
     if not fruit_choice:
         streamlit.error("Please select a fruit to get some info")
     else:    
-        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-        # Normalize semi-structured JSON data into a flat table.
-        fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-        # DIsplay in streamlit table strucutre
-        streamlit.dataframe(fruityvice_normalized)
+        # Display in streamlit table strucutre
+        streamlit.dataframe(get_fruityvice_data(fruit_choice))
 except URLError as e:
     streamlit.error()
+
 #dont run past here
 streamlit.stop()
 
